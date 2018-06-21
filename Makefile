@@ -29,6 +29,12 @@ $(BINARY): $(OBJECTS)
 $(BUILDDIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -I$(HEADERDIR) -I$(SOURCEDIR) -c $< -o $@
 
+capnp:
+	capnp compile -oc++ schema.capnp
+	capnp compile -oc++ schema.capnp
+	mv -f schema.capnp.c++ schema.capnp.cpp
+	mv -f schema.capnp.* ./src/
+
 setup:
 	$(MKDIR) -p $(BUILDDIR)/src
 
